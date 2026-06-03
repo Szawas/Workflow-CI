@@ -25,8 +25,8 @@ jobs:
           pip install -r MLProject/requirements.txt
 
       - name: Run MLflow Project
-        run: |
-          mlflow run MLProject --env-manager=local --experiment-name "Diabetes Classification CI Experiment"
+  run: |
+    mlflow run MLProject --env-manager=local --experiment-name "Diabetes Classification CI Experiment"
 
       - name: Upload MLflow artifacts
         uses: actions/upload-artifact@v4
