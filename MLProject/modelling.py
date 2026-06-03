@@ -24,8 +24,9 @@ def main():
     train_path = os.path.join("diabetes_preprocessing", "train.csv")
     test_path = os.path.join("diabetes_preprocessing", "test.csv")
 
+    mlflow.set_tracking_uri("file:./mlruns")
     mlflow.set_experiment("Diabetes Classification CI Experiment")
-    mlflow.sklearn.autolog()
+    mlflow.sklearn.autolog(disable=True)
 
     X_train, X_test, y_train, y_test = load_data(train_path, test_path)
 

@@ -14,6 +14,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Show repository structure
+        run: |
+          pwd
+          ls -la
+          ls -la MLProject
+          ls -la MLProject/diabetes_preprocessing
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -28,6 +35,11 @@ jobs:
         run: |
           mlflow run MLProject --env-manager=local --experiment-name "Diabetes Classification CI Experiment"
 
+      - name: Check MLflow output
+        run: |
+          ls -la
+          find . -maxdepth 3 -type d -name "mlruns"
+
       - name: Upload MLflow artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -35,3 +47,4 @@ jobs:
           path: |
             MLProject/mlruns
             mlruns
+          if-no-files-found: warn
